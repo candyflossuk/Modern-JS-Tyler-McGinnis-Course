@@ -13,7 +13,7 @@ function formatMessage(name, id, avatar){
     name: name,
     id: id,
     avatar: avatar,
-    timestampe: Date.now()
+    timestamp: Date.now()
   }
 }
 
@@ -24,8 +24,20 @@ function formatMessage(name, id, avatar){
     name,
     id,
     avatar,
-    timestampe: Date.now()
+    timestamp: Date.now()
   }
 }
 
 // Short hand method names
+
+function formatMessage(name, id, avatar){
+  return {
+    name,
+    id,
+    avatar,
+    timestamp: Date.now(),
+    save(){
+      // save messag method
+    }
+  }
+}
