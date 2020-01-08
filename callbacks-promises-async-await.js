@@ -172,7 +172,13 @@ fetch('api/users.json')
 // It would be even better if we could async - just like a normal function
 // i.e wait until the promise is resolved and then carry on.
 
- $('#btn').on("click", async () => { //js knows that inside there is some async inside
+ $('#btn').on("click", async () => {
+   // try{
+   //
+   // } catch (e){
+   //   showError()
+   // }
+   //js knows that inside there is some async inside
    const user = await getUser('candyflossuk') // use await to tell js we are calling async
    const weather = await getWeather(user)
    updateUI({
@@ -183,3 +189,6 @@ fetch('api/users.json')
 
  // This is a nice clean implementation - and pretty much inline with how we normally code!
  async function getPromise(){} // will always return a promise using 'async'
+ // if you use await inside a non 'async' function - you will get a syntax error
+
+// for erros you can use add().catch(showError)
