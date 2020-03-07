@@ -93,5 +93,27 @@ const snoop = Animal('Snoop', 10)
 
 /*
   So ... you create an object and whenever theres a failed property lookup
-  on that object it can consult another object to see if that other object has the property. 
+  on that object it can consult another object to see if that other object has the property.
 */
+
+const parent = {
+  name: 'Stacey',
+  age: 35,
+  heritage: 'Irish'
+}
+
+const child = object.create(parent)
+child.name = 'Ryan'
+child.age = 7
+
+console.log(child.name) // Ryan
+console.log(child.age) // 7
+console.log(child.heritage) // Irish (delegates the lookup to the parent)
+
+/**
+  Now we can use Object.create to delegate the animalMethods object instead
+  of shared methods.
+**/
+
+
+// TODO - PICKUP FROM: Functional Instantaiton with Shared Methods with Object.create
