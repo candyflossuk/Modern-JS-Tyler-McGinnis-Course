@@ -257,7 +257,7 @@ const leo = new Animal('Leo', 7)
 const snoop = new Animal('Snoop', 10)
 
 /*
-This works because the 'this' boject is created - because we called the constructor function with the new
+This works because the 'this' object is created - because we called the constructor function with the new
 keyword. If you leave off 'new' when you invoke the function, that 'this' object never gets created, nor
 is it implicitly returned.
  */
