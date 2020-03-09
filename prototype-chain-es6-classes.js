@@ -203,4 +203,65 @@ snoop.play(5)
  delegate failed lookups to the function prototype and its the 'new' keyword
  */
 
-// TODO - got up to the 'Let's. Go. Deeper' stage - to be continued
+/*
+Looking at our Animal constructor - the two most important parts are:
+  > Create the object (Object.create)
+  > Return the object (return)
+ */
+
+function Animal (name, energy) {
+  let animal = Object.create(Animal.prototype)
+  animal.name = name
+  animal.energy = energy
+
+  return animal
+}
+
+// new keyword gives you those two lines for free - doing them implictly (under the hood) and the object created is called this.
+
+function Animal ( name, energy ) {
+  // const this = Object.create(Animal.prototype)
+
+  this.name = name
+  this.energy = energy
+
+  // return this
+}
+
+const leo = new Animal('Leo', 7)
+const snoop = new Animal('Snoop', 10)
+
+// Without the 'under the hood' comments
+
+function Animal(name, energy) {
+  this.name = name
+  this.energy = energy
+}
+
+Animal.prototype.eat = function(amount) {
+  console.log(`${this.name} is eating`)
+  this.energy += amount
+}
+
+Animal.prototype.sleep = function(length){
+  console.log(`${this.name} is sleeping.`)
+  this.energy += length
+}
+
+Animal.prototype.play = function(length) {
+  console.log(`${this.name} is playing.`)
+  this.energy -= length
+}
+
+const leo = new Animal('Leo', 7)
+const snoop = new Animal('Snoop', 10)
+
+/*
+This works because the 'this' boject is created - because we called the constructor function with the new
+keyword. If you leave off 'new' when you invoke the function, that 'this' object never gets created, nor
+is it implicitly returned.
+ */
+
+
+
+
