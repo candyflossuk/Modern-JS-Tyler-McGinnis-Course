@@ -102,7 +102,7 @@ const parent = {
   heritage: 'Irish'
 }
 
-const child = object.create(parent)
+const child = Object.create(parent)
 child.name = 'Ryan'
 child.age = 7
 
@@ -115,5 +115,88 @@ console.log(child.heritage) // Irish (delegates the lookup to the parent)
   of shared methods.
 **/
 
+const animalMethods = {
+  eat(amount) {
+    console.log(`${this.name} is eating.`)
+    this.energy += amount
+  },
+  sleep(length) {
+    console.log(`${this.name} is sleeping`)
+    this.energy += energy
+  },
+  play(length) {
+    console.log(`{this.name} is playing`)
+    this.energy -= length
+  }
+}
 
-// TODO - PICKUP FROM: Functional Instantaiton with Shared Methods with Object.create
+function Animal (name, energy) {
+  let animal = Object.create(animalMethods)
+  animal.name = name
+  animal.energy = energy
+  return animal
+}
+
+const leo = Animal('Leo', 7)
+const snoop = Animal('Snoop', 10)
+
+leo.eat(10)
+snoop.play(5)
+
+/*
+Calling leo.eat will look for eat on the leo object. The lookup will fail
+then it will delegate to the animalMethods object where it will find eat
+
+This is a bit hacky - turns out this is why prototype was made
+
+In JS - every function in JS has a prototype property that references and object.
+ */
+
+function doThing () {}
+console.log(doThing.prototype) // {}
+
+/*
+ Instead of a separate object for our methods - put each of these methods on the Animal function's prototype.
+ Call to Object.create to delegate the animalMethods - which would delegate to Animal.prototype - this
+ is called Prototypal Instantiation
+ */
+
+function Animal (name, energy) {
+  let animal = Object.create(Animal.prototype)
+  animal.name = name
+  animal.energy = energy
+
+  return animal
+}
+
+Animal.prototype.eat = function(amount) {
+  console.log(`${this.name} is eating`)
+  this.energy += amount
+}
+
+Animal.prototype.sleep = function(length){
+  console.log(`${this.name} is sleeping.`)
+  this.energy += length
+}
+
+Animal.prototype.play = function(length) {
+  console.log(`${this.name} is playing.`)
+  this.energy -= length
+}
+
+const leo = Animal('Leo', 7 )
+const snoop = Animal('Snoop', 10)
+
+leo.eat(10)
+snoop.play(5)
+
+/**
+ * prototype is just a property that every function in JS has - allowing us to share methods across
+ * all instances of a function.
+ *
+ * All functionallity is the same - instead of having to manage a separate object for each method -
+ * we just use another object - that comes built into Animal - Animal.prototype
+ */
+
+
+
