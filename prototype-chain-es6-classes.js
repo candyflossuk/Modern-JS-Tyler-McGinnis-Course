@@ -198,5 +198,9 @@ snoop.play(5)
  * we just use another object - that comes built into Animal - Animal.prototype
  */
 
+/*
+ There is a way to create a constructor function, add methods to a constructor prototype and use Object.create to
+ delegate failed lookups to the function prototype and its the 'new' keyword
+ */
 
-
+// TODO - got up to the 'Let's. Go. Deeper' stage - to be continued
