@@ -300,6 +300,6 @@ class Animal {
 const leo = new Animal('Leo', 7)
 const snoop = new Animal('Scoop', 10)
 
-
+// TOOD - Placeholder of where I'm up to on the tutorial - Array Methods
 
 
